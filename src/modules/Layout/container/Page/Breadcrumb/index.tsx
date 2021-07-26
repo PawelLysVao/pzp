@@ -17,32 +17,28 @@ const Breadcrumb: React.FC<Props> = ({
     link: ROUTE_DASHBOARD
   }
 }: Props): JSX.Element => {
-  const elements = items.map(
-    ({ title, link }, index) => {
-      const isActive = items.length === index + 1;
+  const elements = items.map(({ title, link }, index) => {
+    const isActive = items.length === index + 1;
 
-      const classes = classNames('breadcrumb-item', { active: isActive });
+    const classes = classNames('breadcrumb-item', { active: isActive });
 
-      return (
-        <Authorize
-          key={title}
-        >
-          {/* eslint-disable-next-line no-nested-ternary */}
-          {link ? (
-            isActive ? (
-              <li className={classes}>{title}</li>
-            ) : (
-              <li className={classes}>
-                <Link to={link}>{title}</Link>
-              </li>
-            )
-          ) : (
+    return (
+      <Authorize key={title}>
+        {/* eslint-disable-next-line no-nested-ternary */}
+        {link ? (
+          isActive ? (
             <li className={classes}>{title}</li>
-          )}
-        </Authorize>
-      );
-    }
-  );
+          ) : (
+            <li className={classes}>
+              <Link to={link}>{title}</Link>
+            </li>
+          )
+        ) : (
+          <li className={classes}>{title}</li>
+        )}
+      </Authorize>
+    );
+  });
 
   return (
     <ol className="breadcrumb my-1 py-2">

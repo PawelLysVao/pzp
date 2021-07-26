@@ -1,31 +1,19 @@
 import { hasToken } from 'modules/Auth/service';
-import { ROUTE_DASHBOARD } from 'modules/Layout/routes';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-export type Props = Readonly<{
-  children?: ReactNode;
+export type Props = {
   redirect?: string;
-}>;
+};
 
-class Unguarded extends React.Component<Props> {
-  protected readonly hasToken: boolean;
+const Unguarded: React.FC<Props> = ({ redirect, children }) => {
+  const _hasToken = hasToken();
 
-  constructor(props: Props) {
-    super(props);
-
-    this.hasToken = hasToken();
+  if (_hasToken) {
+    return <Redirect to={redirect} />;
   }
 
-  render(): ReactNode {
-    const { children, redirect = ROUTE_DASHBOARD } = this.props;
-
-    if (this.hasToken) {
-      return <Redirect to={redirect} />;
-    }
-
-    return children;
-  }
-}
+  return <>{children}</>;
+};
 
 export default Unguarded;

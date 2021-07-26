@@ -5,13 +5,13 @@ import { UserEntity } from 'modules/User/model/User';
 
 export const API_TOKEN = '/api/oauth/token';
 export const API_REFRESH_TOKEN = '/api/oauth/token';
-export const API_AUTHENTICATE = '/user';
+export const API_AUTHENTICATE = '/api/user';
 
 export const requestToken = (payload: RequestTokenPayload): AxiosPromise<Token> =>
   axios.post(getAPIUrl(API_TOKEN), payload);
 
 export type AuthenticateResponse = {
-  profileData: UserEntity;
+  data: UserEntity;
 };
 
 export const authenticate = (): AxiosPromise<AuthenticateResponse> => axios.get(getAPIUrl(API_AUTHENTICATE));

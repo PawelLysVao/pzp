@@ -42,15 +42,7 @@ export default class User {
   }
 
   static getFilterableAttributes(): string[] {
-    return [
-      'email',
-      'username',
-      'country',
-      'age_min',
-      'age_max',
-      'plants_owned',
-      'plants_knowledge'
-    ];
+    return ['email', 'username', 'country', 'age_min', 'age_max', 'plants_owned', 'plants_knowledge'];
   }
 
   static getSortableAttributes(): string[] {
@@ -96,9 +88,7 @@ export default class User {
   }
 
   getPlantsKnowledge(): string {
-    const option = User.getPlantsKnowledgeOptions().find(
-      (option) => option.value === this.plants_knowledge
-    );
+    const option = User.getPlantsKnowledgeOptions().find((option) => option.value === this.plants_knowledge);
 
     if (!option) {
       return null;
@@ -108,9 +98,7 @@ export default class User {
   }
 
   getPlantsOwned(): string {
-    const option = User.getPlantsOwnedOptions().find(
-      (option) => option.value === this.plants_owned
-    );
+    const option = User.getPlantsOwnedOptions().find((option) => option.value === this.plants_owned);
 
     if (!option) {
       return null;
@@ -121,3 +109,29 @@ export default class User {
 }
 
 export const createUser = (entity: UserEntity): User => new User(entity);
+
+/*
+company: null
+created_at: "2021-07-26 14:19:47"
+email: "pawel.lyskawinski@vao.pl"
+first_name: "Paweł"
+id: 4
+is_deletable: true
+last_login_at: "2021-07-26 15:22:00"
+last_name: "Łyskawiński"
+name: "Paweł Łyskawiński"
+new_email: null
+permissions: ["users_index", "users_add", "users_edit", "users_delete", "users_details"]
+    0: "users_index"
+    1: "users_add"
+    2: "users_edit"
+    3: "users_delete"
+    4: "users_details"
+role: {id: 1, slug: "admin", name: "Administrator systemu"}
+id: 1
+name: "Administrator systemu"
+slug: "admin"
+status: 1
+updated_at: "2021-07-26 15:22:00"
+
+*/

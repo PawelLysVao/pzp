@@ -1,21 +1,11 @@
-import {
-  AuthAction,
-  AUTHENTICATE,
-  LOGIN,
-  LOGOUT,
-  SET_AUTH_STATE,
-  SET_AUTH_USER
-} from 'modules/Auth/action';
+import { AuthAction, AUTHENTICATE, LOGIN, LOGOUT, SET_AUTH_STATE, SET_AUTH_USER } from 'modules/Auth/action';
 import { AuthState, initAuthState } from 'modules/Auth/state';
 import { ColorVariants } from 'modules/Shared/type';
 import { createUser } from 'modules/User/model/User';
 
 const initialState = initAuthState();
 
-const reducer = (
-  state: AuthState = initialState,
-  action: AuthAction
-): AuthState => {
+const reducer = (state: AuthState = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
     case AUTHENTICATE:
       return {
@@ -44,7 +34,7 @@ const reducer = (
     case LOGOUT: {
       const {
         message = {
-          value: 'You have been logged out',
+          value: 'Zostałeś wylogowany/a',
           variant: ColorVariants.Primary
         }
       } = action.payload;

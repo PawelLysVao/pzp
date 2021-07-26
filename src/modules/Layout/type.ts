@@ -63,3 +63,8 @@ export type FilterInputType =
   | FilterInputDateProps
   | FilterDatetimeProps
   | FilterCheckboxProps;
+
+export interface PasswordValues {
+  password?: string;
+  password_confirmation?: string;
+}

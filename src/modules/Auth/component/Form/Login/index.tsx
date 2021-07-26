@@ -1,18 +1,8 @@
 import { Credentials } from 'modules/Auth/type';
 import { getError, hasError } from 'modules/Shared/helper/validation';
 import { ValidationErrors } from 'modules/Shared/type';
-import React, { ReactNode } from 'react';
-import {
-  Button,
-  Form as FormStrap,
-  FormFeedback,
-  FormGroup,
-  Input
-} from 'reactstrap';
-
-export type State = {
-  credentials: Credentials;
-};
+import React, { useState } from 'react';
+import { Button, Form as FormStrap, FormFeedback, FormGroup, Input } from 'reactstrap';
 
 export type Props = {
   errors: ValidationErrors;
@@ -20,93 +10,59 @@ export type Props = {
   busy: boolean;
 };
 
-class Form extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const Form: React.FC<Props> = ({ errors, submit, busy }) => {
+  const [credentials, setCredentials] = useState({
+    username: '',
+    password: ''
+  });
 
-    this.state = {
-      credentials: {
-        email: '',
-        password: ''
-      }
-    };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onChange(
-    event: React.ChangeEvent<HTMLInputElement>,
-    key: keyof Credentials
-  ): void {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>, key: keyof Credentials) => {
     const { value } = event.currentTarget;
-    const { credentials } = this.state;
+    setCredentials({ ...credentials, [key]: value });
+  };
 
-    this.setState({
-      credentials: { ...credentials, [key]: value }
-    });
-  }
-
-  onSubmit(event: React.FormEvent<HTMLFormElement>): void {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const { submit } = this.props;
-    const { credentials } = this.state;
-
     submit(credentials);
-  }
+  };
 
-  render(): ReactNode {
-    const { errors, busy } = this.props;
-    const { credentials } = this.state;
-
-    return (
-      <FormStrap onSubmit={this.onSubmit}>
-        <FormGroup className="mb-3">
-          <Input
-            type="email"
-            name="email"
-            id="email-input"
-            placeholder="Email"
-            value={credentials.email}
-            disabled={busy}
-            onChange={(event) => this.onChange(event, 'email')}
-            invalid={hasError(errors, 'email')}
-            required
-          />
-          {hasError(errors, 'email') && (
-            <FormFeedback>{getError(errors, 'email')}</FormFeedback>
-          )}
-        </FormGroup>
-        <FormGroup className="mb-4">
-          <Input
-            type="password"
-            name="password"
-            id="password-input"
-            placeholder="Password"
-            value={credentials.password}
-            disabled={busy}
-            onChange={(event) => this.onChange(event, 'password')}
-            invalid={hasError(errors, 'password')}
-            required
-          />
-          {hasError(errors, 'password') && (
-            <FormFeedback>{getError(errors, 'password')}</FormFeedback>
-          )}
-        </FormGroup>
-        <FormGroup className="mb-0">
-          <Button
-            className="waves-effect waves-light"
-            type="submit"
-            color="primary"
-            disabled={busy}
-          >
-            Log in
-          </Button>
-        </FormGroup>
-      </FormStrap>
-    );
-  }
-}
+  return (
+    <FormStrap onSubmit={onSubmit}>
+      <FormGroup className="mb-3">
+        <Input
+          type="text"
+          name="username"
+          id="username-input"
+          placeholder="Login"
+          value={credentials.username}
+          disabled={busy}
+          onChange={(event) => onChange(event, 'username')}
+          invalid={hasError(errors, 'username')}
+          required
+        />
+        {hasError(errors, 'username') && <FormFeedback>{getError(errors, 'username')}</FormFeedback>}
+      </FormGroup>
+      <FormGroup className="mb-4">
+        <Input
+          type="password"
+          name="password"
+          id="password-input"
+          placeholder="Hasło"
+          value={credentials.password}
+          disabled={busy}
+          onChange={(event) => onChange(event, 'password')}
+          invalid={hasError(errors, 'password')}
+          required
+        />
+        {hasError(errors, 'password') && <FormFeedback>{getError(errors, 'password')}</FormFeedback>}
+      </FormGroup>
+      <FormGroup className="mb-0">
+        <Button className="waves-effect waves-light" type="submit" color="primary" disabled={busy}>
+          ZALOGUJ
+        </Button>
+      </FormGroup>
+    </FormStrap>
+  );
+};
 
 export default Form;

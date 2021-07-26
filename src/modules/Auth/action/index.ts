@@ -10,6 +10,7 @@ import ApiError from 'modules/Shared/exception/ApiError';
 import { push } from 'connected-react-router';
 import { ROUTE_DASHBOARD } from 'modules/Layout/routes';
 import { createRequestTokenPayload } from 'modules/Auth/helper';
+import { ROUTE_LOGIN } from 'modules/Auth/routes';
 
 export const AUTHENTICATE = 'AUTH/AUTHENTICATE';
 export const AUTHENTICATED = 'AUTH/AUTHENTICATED';
@@ -45,11 +46,11 @@ export const authenticateAction = () => async (dispatch: Dispatch) => {
 
   try {
     const response = await authenticate();
-    const { profileData } = response?.data;
+    const { data } = response?.data;
 
     dispatch<SetAuthUserAction>({
       type: SET_AUTH_USER,
-      payload: profileData
+      payload: data
     });
   } catch (error) {
     if (!(error instanceof ApiError)) {
@@ -100,11 +101,15 @@ export interface LogoutAction extends Action<typeof LOGOUT> {
   payload?: LogoutPayload;
 }
 
-export const logoutAction = (payload: LogoutPayload = {}): LogoutAction => {
-  clearToken();
+export const logoutAction =
+  (payload: LogoutPayload = {}) =>
+  (dispatch: Dispatch) => {
+    clearToken();
 
-  return {
-    type: LOGOUT,
-    payload
+    dispatch(push(ROUTE_LOGIN));
+
+    dispatch<LogoutAction>({
+      type: LOGOUT,
+      payload
+    });
   };
-};

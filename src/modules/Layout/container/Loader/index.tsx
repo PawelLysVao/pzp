@@ -12,8 +12,9 @@ export type Props = StateProps;
 
 export const mapState = (rootState: RootState): StateProps => {
   const { authenticating } = rootState.auth;
+  const { showLoader } = rootState.layout;
 
-  return { showLoader: authenticating };
+  return { showLoader: showLoader || authenticating };
 };
 
 const Loader: React.FC<Props> = (props: Props): JSX.Element => {

@@ -1,0 +1,13 @@
+.auth-logo {
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    top: -5px;
+    left: 36px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
