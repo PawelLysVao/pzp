@@ -1,0 +1,26 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+.pagination-nav {
+  margin-bottom: 0;
+
+  .page-item {
+    display: none;
+  }
+
+  .page-first,
+  .page-last,
+  .page-previous,
+  .page-next,
+  .active,
+  .page-static {
+    display: block;
+  }
+
+  @include media-breakpoint-up(md) {
+    .page-item {
+      display: block;
+    }
+  }
+}

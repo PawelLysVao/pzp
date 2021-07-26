@@ -1,0 +1,29 @@
+.table {
+  tr {
+    th,
+    td {
+      overflow: auto;
+    }
+  }
+
+  .actions-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    > * {
+      flex: 0 0 auto;
+      margin: 0 4px;
+    }
+
+    > *:first-child {
+      margin-left: 0;
+    }
+
+    > * :last-child {
+      margin-right: 0;
+    }
+  }
+}

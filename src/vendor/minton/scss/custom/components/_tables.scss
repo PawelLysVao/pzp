@@ -1,0 +1,175 @@
+//
+// tables.scss
+//
+
+.table {
+  thead tr {
+    th, td {
+      color: $secondary;
+      background-color: #fff;
+    }
+  }
+
+  th {
+    font-weight: $font-weight-medium;
+  }
+}
+
+//Table centered (Custom)
+.table-centered {
+  td, th {
+    vertical-align: middle !important;
+  }
+}
+
+
+// Custom table components (Custom)
+.table {
+  .table-user {
+    img {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  tbody tr.active {
+    color: #fff;
+    background-color: $primary;
+
+    td {
+      border-color: #fff;
+
+      a, .btn {
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+.table-bordered:not(.table-striped):not(.table-hover) {
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead tr th {
+    vertical-align: middle;
+  }
+
+  thead tr th,
+  tbody tr td,
+  tfoot tr td {
+    background-color: #fff;
+
+    border-width: 0.5px;
+    border-color: #A8A8A8;
+
+    border-left-width: 2px;
+    border-left-color: $secondary;
+
+    a, .btn {
+      color: $primary !important;
+    }
+
+    &:first-of-type {
+      border-left-width: 0.5px;
+      border-left-color: #A8A8A8;
+
+      border-top-left-radius: .375rem;
+      border-bottom-left-radius: .375rem;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: .375rem;
+      border-bottom-right-radius: .375rem;
+    }
+  }
+}
+
+.table-striped {
+  tbody tr {
+    &:nth-of-type(even) {
+      color: $primary;
+      background-color: #fff;
+
+      td {
+        border-color: $primary;
+
+        a, .btn {
+          color: $primary !important;
+        }
+      }
+    }
+
+    &:nth-of-type(odd) {
+      color: #fff;
+      background-color: $primary;
+
+      td {
+        border-color: #fff;
+
+        a, .btn {
+          color: #fff !important;
+        }
+      }
+    }
+
+    &:first-of-type {
+      td {
+        border-top-color: transparent;
+      }
+    }
+
+    &:last-of-type {
+      td {
+        border-bottom-color: transparent;
+      }
+    }
+
+    td {
+      &:first-of-type {
+        border-left-color: transparent;
+      }
+
+      &:last-of-type {
+        border-right-color: transparent;
+      }
+    }
+  }
+}
+
+.table-hover {
+  tbody tr {
+    color: $primary;
+    background-color: #fff;
+    cursor: pointer;
+
+    td {
+      a, .btn {
+        color: $primary !important;
+      }
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: $primary;
+
+      td {
+        border-color: #fff;
+
+        a, .btn {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}
+
+.action-icon {
+  color: $gray-600;
+  font-size: 1.2rem;
+  display: inline-block;
+  padding: 0 3px;
+
+  &:hover {
+    color: $gray-700;
+  }
+}

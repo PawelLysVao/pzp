@@ -1,0 +1,117 @@
+// Oswald font
+$font-oswald: 'Oswald', sans-serif;
+
+
+//
+// Color system
+//
+
+// stylelint-disable
+$gray-100: #f1f5f7;
+$gray-200: #f7f7f7;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #98a6ad;
+$gray-700: #6c757d;
+$gray-800: #343a40;
+$gray-900: #323a46;
+
+$grays: ();
+$grays: map-merge((
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+), $grays);
+
+$blue: #3bafda;
+$indigo: #675aa9;
+$purple: #6559cc;
+$pink: #f672a7;
+$red: #f1556c;
+$orange: #fd7e14;
+$yellow: #f7b84b;
+$green: #1abc9c;
+$teal: #02a8b5;
+$cyan: #37cde6;
+$gray: #A8A8A8;
+
+
+$colors: ();
+$colors: map-merge((
+  "blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "cyan": $cyan,
+  "white": $white,
+  "gray": $gray,
+  "gray-dark": $gray-800
+), $colors);
+
+
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$blue: $blue;
+$light: $gray-100;
+$dark: $gray-900;
+
+
+$theme-colors: ();
+$theme-colors: map-merge((
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "pink": $pink,
+  "purple": $purple,
+  "gray": $gray
+), $theme-colors);
+
+
+// Breadcrumbs
+
+$breadcrumb-padding-y: $spacer/1.5;
+$breadcrumb-padding-x: 0;
+$breadcrumb-item-padding: .5rem;
+
+$breadcrumb-bg: transparent;
+$breadcrumb-divider: quote("\F142");
+$breadcrumb-color: #707070;
+$breadcrumb-divider-color: #707070;
+$breadcrumb-active-color: #A8A8A8;
+
+// Nav pills
+
+$nav-pills-link-active-bg: $secondary;
+$stage-nav-pills-link-active-bg: $primary;
+
+
+// Button
+
+$btn-padding-x: $input-btn-padding-x * 2.5;
+$btn-border-radius: .375rem;
+
+// Card
+
+$card-border-radius: .375rem;
+$card-inner-border-radius: .375rem;
+
+$custom-control-indicator-checked-disabled-bg:  rgba(theme-color("primary"), .5);

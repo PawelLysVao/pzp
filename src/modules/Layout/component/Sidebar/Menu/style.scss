@@ -1,0 +1,27 @@
+.metismenu {
+  .executor-menu-link {
+    display: none;
+  }
+
+  .contractor-menu-link {
+    display: none;
+  }
+}
+
+.layout-contractor {
+  .metismenu {
+
+    .contractor-menu-link {
+      display: list-item;
+    }
+  }
+}
+
+.layout-executor {
+  .metismenu {
+
+    .executor-menu-link {
+      display: list-item;
+    }
+  }
+}

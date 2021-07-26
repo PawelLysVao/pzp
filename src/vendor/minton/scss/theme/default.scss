@@ -1,0 +1,17 @@
+/*
+Template Name: Minton - Responsive Bootstrap 4 Admin Dashboard
+Author: CoderThemes
+Version: 4.0.0
+Website: https://coderthemes.com/
+Contact: support@coderthemes.com
+File: Main Css File
+*/
+
+.layout-default {
+  @import './node_modules/bootstrap/scss/functions';
+  @import './node_modules/bootstrap/scss/variables';
+  @import '../variable/default';
+  @import '../variable/custom';
+  @import '../bootstrap';
+  @import '../app';
+}

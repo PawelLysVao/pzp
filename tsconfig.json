@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "target": "ES6",
+    "jsx": "react",
+    "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "src/declarations.d.ts",
+      "node_modules/@types"
+    ],
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

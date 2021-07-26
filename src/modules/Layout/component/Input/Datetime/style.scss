@@ -1,0 +1,16 @@
+.datetime-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  input[type='date'] { /* stylelint-disable-line */
+    margin-right: 1rem;
+  }
+
+  input {
+    width: auto !important; /* stylelint-disable-line */
+    margin-bottom: 1rem !important; /* stylelint-disable-line */
+  }
+}

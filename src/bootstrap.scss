@@ -1,0 +1,89 @@
+@import "vendor/minton/scss/icons";
+@import "vendor/minton/scss/custom/fonts/fonts";
+@import "vendor/minton/scss/theme/default";
+@import "vendor/minton/scss/theme/contractor";
+@import "vendor/minton/scss/theme/executor";
+@import "~react-perfect-scrollbar/dist/css/styles.css";
+
+html {
+  scroll-padding-top: 90px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* stylelint-disable selector-max-id */
+#app {
+  position: relative;
+  min-height: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar-enable {
+    overflow-y: hidden;
+  }
+}
+
+.content-page {
+  position: relative;
+  min-height: calc(100vh - 70px);
+}
+
+.ps {
+  &__rail-y {
+    left: auto !important; /* stylelint-disable-line declaration-no-important */
+
+    &--clicking {
+      background-color: transparent !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    &:hover {
+      background-color: transparent !important; /* stylelint-disable-line declaration-no-important */
+    }
+  }
+}
+
+select {
+  text-overflow: ellipsis;
+}
+
+.layout-default,
+.layout-contractor,
+.layout-executor {
+  .was-validated :invalid ~ .invalid-feedback,
+  .was-validated :invalid ~ .invalid-tooltip,
+  .is-invalid ~ .invalid-feedback,
+  .is-invalid ~ .invalid-tooltip {
+    display: block;
+  }
+
+  .custom-file-input:lang(pl) ~ .custom-file-label::after {
+    content: "Wybierz";
+  }
+
+  .sidebar-disable {
+    .left-side-menu {
+      display: none;
+    }
+
+    .content-page {
+      margin-left: 0;
+    }
+  }
+}
+
+.tooltip {
+  z-index: 99 !important; /* stylelint-disable-line */
+}
+
+.public-DraftStyleDefault-ltr {
+  text-align: inherit !important; /* stylelint-disable-line */
+}
+
+.toggle-sidebar-tooltip {
+  .tooltip {
+    z-index: 10000 !important; /* stylelint-disable-line */
+  }
+}

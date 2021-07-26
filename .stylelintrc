@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "selector-max-class": null,
+    "selector-max-compound-selectors": null,
+    "selector-class-pattern": null
+  },
+  "extends": "stylelint-config-twbs-bootstrap/scss",
+  "ignoreFiles": [
+    "src/vendor/**/*"
+  ]
+}
