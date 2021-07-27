@@ -1,6 +1,8 @@
 import { ColorVariants, SelectOption } from 'modules/Shared/type';
 
 export const TOAST_CLOSE_IN = 4000;
+export const SCREEN_MOBILE_WIDTH = 767.98;
+export const SCREEN_MEDIUM_WIDTH = 1200;
 
 export type PageType = 'loading' | '403' | '404' | '500';
 

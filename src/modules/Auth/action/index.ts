@@ -113,3 +113,29 @@ export const logoutAction =
       payload
     });
   };
+
+  const registerAction = () => (dispatch: Dispatch) => {
+    
+  }
+
+  /*
+  export function* registerSaga({ payload }: RegisterAction): SagaIterator {
+  let state: SettableAuthState = { busy: false };
+
+  try {
+    yield call(register, payload);
+
+    state.message = {
+      value: 'Konto zostało stworzone!',
+      variant: ColorVariants.Success
+    };
+
+    yield put(push(ROUTE_LOGIN));
+  } catch (error) {
+    if (error instanceof ApiError) {
+      state = { ...state, ...error.getPayload() };
+    }
+  }
+
+  yield put(setAuthStateAction(state));
+}*/

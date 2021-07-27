@@ -57,28 +57,12 @@ class SidebarMenu extends React.Component<StateProps> {
 
   // eslint-disable-next-line class-methods-use-this
   renderNested(item: MenuNested, className = ''): ReactNode {
-    const {
-      children,
-      navLevel,
-      title,
-      icon,
-      href,
-      key,
-      isActive = null,
-      hasAccess = null
-    } = item;
-    const builtChildren = children.map((child) =>
-      this.renderMenu(child, className)
-    );
+    const { children, navLevel, title, icon, href, key, isActive = null, hasAccess = null } = item;
+    const builtChildren = children.map((child) => this.renderMenu(child, className));
     return (
       <Authorized key={key} hasAccess={hasAccess}>
         <li className={className}>
-          <NavLink
-            to={href}
-            isActive={isActive}
-            className="waves-effect has-dropdown"
-            aria-expanded="false"
-          >
+          <NavLink to={href} isActive={isActive} className="waves-effect has-dropdown" aria-expanded="false">
             {icon && <i className={icon} />}
             <span className="white-break-spaces"> {title} </span>
             <span className="menu-arrow" />

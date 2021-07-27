@@ -1,10 +1,7 @@
 import { RootState } from 'app/reducer';
 import Table, { TableCol } from 'modules/Layout/component/Table';
 import { PartialSearchingProps, SortParams } from 'modules/Shared/type';
-import {
-  setUserListParamsAction,
-  SetUserListParamsAction
-} from 'modules/User/action/list';
+import { setUserListParamsAction, SetUserListParamsAction } from 'modules/User/action/list';
 import User from 'modules/User/model/User';
 import React, { ReactNode } from 'react';
 import { connect } from 'react-redux';
@@ -32,8 +29,7 @@ export const mapState = (state: RootState): StateProps => {
 };
 
 export const mapDispatch = (dispatch: Dispatch): DispatchProps => ({
-  setParams: (payload: PartialSearchingProps) =>
-    dispatch(setUserListParamsAction(payload))
+  setParams: (payload: PartialSearchingProps) => dispatch(setUserListParamsAction(payload))
 });
 
 export class UserTable extends React.Component<Props> {
@@ -55,34 +51,6 @@ export class UserTable extends React.Component<Props> {
         property: 'username',
         label: 'Username',
         sortable: true
-      },
-      {
-        property: 'status',
-        label: 'Status'
-      },
-      {
-        property: 'age',
-        label: 'Age',
-        sortable: true
-      },
-      {
-        property: 'city',
-        label: 'City'
-      },
-      {
-        property: 'country',
-        label: 'Country',
-        sortable: true
-      },
-      {
-        property: 'plants_knowledge',
-        label: 'Plants Knowledge',
-        value: (row) => row.getPlantsKnowledge()
-      },
-      {
-        property: 'plants_owned',
-        label: 'Plants owned',
-        value: (row) => row.getPlantsOwned()
       }
     ];
   }
@@ -90,18 +58,8 @@ export class UserTable extends React.Component<Props> {
   render(): ReactNode {
     const { users, sort, setParams } = this.props;
 
-    return (
-      <Table
-        cols={this.cols}
-        rows={users}
-        sort={sort}
-        onSort={(params) => setParams({ sort: params })}
-      />
-    );
+    return <Table cols={this.cols} rows={users} sort={sort} onSort={(params) => setParams({ sort: params })} />;
   }
 }
 
-export default connect<StateProps, DispatchProps>(
-  mapState,
-  mapDispatch
-)(UserTable);
+export default connect<StateProps, DispatchProps>(mapState, mapDispatch)(UserTable);

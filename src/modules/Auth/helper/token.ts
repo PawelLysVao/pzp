@@ -4,12 +4,7 @@ import { logoutAction, LogoutPayload } from 'modules/Auth/action';
 import Unauthenticated from 'modules/Auth/exception/Unauthenticated';
 import { createRefreshTokenPayload } from 'modules/Auth/helper';
 import { API_REFRESH_TOKEN, refreshToken } from 'modules/Auth/repository';
-import {
-  clearToken,
-  loadToken,
-  saveToken,
-  setAuthHeader
-} from 'modules/Auth/service';
+import { clearToken, loadToken, saveToken, setAuthHeader } from 'modules/Auth/service';
 import { Token } from 'modules/Auth/type';
 import { getAPIUrl } from 'modules/Shared/helper/api';
 import { Store } from 'redux';
@@ -18,10 +13,7 @@ import { ColorVariants } from 'modules/Shared/type';
 let refreshing: AxiosPromise<Token> = null;
 
 // eslint-disable-next-line import/prefer-default-export
-export const handleUnauthenticated = (
-  error: AxiosError,
-  store: Store<RootState>
-): Promise<unknown> => {
+export const handleUnauthenticated = (error: AxiosError, store: Store<RootState>): Promise<unknown> => {
   const {
     config: { url }
   } = error;
@@ -36,7 +28,7 @@ export const handleUnauthenticated = (
       }
     };
 
-    store.dispatch(logoutAction(logoutPayload));
+    store.dispatch(logoutAction(logoutPayload) as any);
 
     return Promise.reject(unauthenticated);
   }
