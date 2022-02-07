@@ -1,11 +1,11 @@
 import { SettableAuthState } from 'modules/Auth/state';
-import { Credentials } from 'modules/Auth/type';
-import { Message } from 'modules/Shared/type';
+import { Credentials, RegisterValues } from 'modules/Auth/type';
+import { ColorVariants, Message } from 'modules/Shared/type';
 import { UserEntity } from 'modules/User/model/User';
 import { Action, Dispatch } from 'redux';
 
 import { clearToken, loadToken, saveToken, setAuthHeader } from 'modules/Auth/service';
-import { authenticate, requestToken } from 'modules/Auth/repository';
+import { authenticate, register, requestToken } from 'modules/Auth/repository';
 import ApiError from 'modules/Shared/exception/ApiError';
 import { push } from 'connected-react-router';
 import { ROUTE_DASHBOARD } from 'modules/Layout/routes';
@@ -114,11 +114,31 @@ export const logoutAction =
     });
   };
 
-  const registerAction = () => (dispatch: Dispatch) => {
-    
+export const registerAction = (payload: RegisterValues) => async (dispatch: Dispatch) => {
+  let state: SettableAuthState = { busy: false };
+
+  try {
+    await register(payload);
+
+    state.message = {
+      value: 'Konto zostało stworzone!',
+      variant: ColorVariants.Success
+    };
+
+    dispatch(push(ROUTE_LOGIN));
+  } catch (error) {
+    if (error instanceof ApiError) {
+      state = { ...state, ...error.getPayload() };
+    }
   }
 
-  /*
+  dispatch<SetAuthStateAction>({
+    type: SET_AUTH_STATE,
+    payload: state
+  });
+};
+
+/*
   export function* registerSaga({ payload }: RegisterAction): SagaIterator {
   let state: SettableAuthState = { busy: false };
 

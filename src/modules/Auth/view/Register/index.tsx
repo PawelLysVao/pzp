@@ -1,70 +1,35 @@
 import { RootState } from 'app/reducer';
-import { RegisterAction, registerAction } from 'modules/Auth/action';
+import { registerAction } from 'modules/Auth/action';
 import RegisterForm from 'modules/Auth/component/Register/Form';
 import { View } from 'modules/Auth/component/View';
 import { RegisterValues } from 'modules/Auth/type';
-import { Message, ValidationErrors } from 'modules/Shared/type';
-import React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { PageProps } from 'modules/Layout/type';
-import { managePageAction, ManagePageAction } from 'modules/Layout/action';
+import { managePageAction } from 'modules/Layout/action';
 import PublicWrapper from 'modules/Layout/component/Wrapper/Public';
 
-export interface StateProps {
-  busy: boolean;
-  message?: Message;
-  errors?: ValidationErrors;
-}
+const Register = () => {
+  const dispatch = useDispatch();
+  const { busy, message, errors } = useSelector((state: RootState) => state.auth);
 
-export interface DispatchProps {
-  register: (values: RegisterValues) => RegisterAction;
-  managePage: (payload: PageProps) => ManagePageAction;
-}
+  const register = (values: RegisterValues) => dispatch(registerAction(values) as any);
+  const managePage = (payload: PageProps) => dispatch(managePageAction(payload));
 
-export type Props = StateProps & DispatchProps;
-
-export const mapState = (state: RootState): StateProps => {
-  const { busy, message, errors } = state.auth;
-
-  return { busy, message, errors };
-};
-
-export const mapDispatch = (dispatch: Dispatch): DispatchProps => ({
-  register: (values) => dispatch(registerAction(values)),
-  managePage: (payload: PageProps) => dispatch(managePageAction(payload))
-});
-
-export class Register extends React.Component<Props> {
-  componentDidMount(): void {
-    const { managePage } = this.props;
-
+  useEffect(() => {
     managePage({
       title: 'Rejestracja'
     });
-  }
+  }, []);
 
-  render(): JSX.Element {
-    const { busy, message, errors, register } = this.props;
+  return (
+    <PublicWrapper>
+      <View className="m-0" busy={busy} message={message} logoText="Zarejestruj się" logoSize={195}>
+        <span />
+        <RegisterForm busy={busy} errors={errors} submit={register} />
+      </View>
+    </PublicWrapper>
+  );
+};
 
-    return (
-      <PublicWrapper>
-        <View
-          className="m-0"
-          busy={busy}
-          message={message}
-          logoText="Zarejestruj się"
-          logoSize={195}
-        >
-          <span />
-          <RegisterForm busy={busy} errors={errors} submit={register} />
-        </View>
-      </PublicWrapper>
-    );
-  }
-}
-
-export default connect<StateProps, DispatchProps>(
-  mapState,
-  mapDispatch
-)(Register);
+export default Register;

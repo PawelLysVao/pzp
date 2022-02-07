@@ -2,7 +2,7 @@ import { registerAxiosInterceptors } from 'app/interceptors';
 import { createRoutes } from 'app/routes';
 import configureStore from 'app/store';
 import { ConnectedRouter } from 'connected-react-router';
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import Guard from 'modules/Auth/container/Guard';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -14,7 +14,7 @@ import Toast from 'modules/Layout/container/Toast';
 import SidebarMenu from 'modules/Layout/component/Sidebar/Menu';
 import Navbar from 'modules/Layout/component/Navbar';
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 const store = configureStore(history);
 const routes = createRoutes();
 
@@ -25,10 +25,7 @@ document.addEventListener<'input'>('input', (event: Event) => {
 
   element.classList.remove('is-invalid');
 
-  if (
-    element.parentElement &&
-    element.parentElement.classList.contains('input-group')
-  ) {
+  if (element.parentElement && element.parentElement.classList.contains('input-group')) {
     element.parentElement.classList.remove('is-invalid');
   }
 });
